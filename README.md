@@ -1,9 +1,20 @@
 # Viewing Party
 
-Viewing party is an application in which users can explore movie options and create a viewing party for friends to watch selected movies together.
+This is the base repo for the viewing party project used for Turing's Backend Module 3.
 
 
-## Getting Started
+### About this Project
 
-1. `bundle install`
-2. `rails db:create`
+Viewing party is an application in which users can explore movie options and create a viewing party event for the user and friend's.
+
+## Local Setup
+
+1. Fork and Clone the repo
+2. Install gem packages: `bundle install`
+3. Setup the database: `rails db:create`
+
+
+## Versions
+
+- Ruby 2.5.3
+- Rails 5.1.7
