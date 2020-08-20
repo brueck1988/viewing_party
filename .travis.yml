@@ -4,15 +4,10 @@ rbenv:
 addons:
   postgresql: 9.6
 script:
-- bundle exec rails db:{create,migrate,seed} RAILS_ENV=test
+- bundle exec rails db:{create,migrate} RAILS_ENV=test
 - bundle exec rspec
 deploy:
   provider: heroku
   api_key:
-    secure: xFascAxQSlb0Ky8KQNB3En6+z4Q8SSPqtlDfZc0pu3g4dVvKLuJzdqu57LcPnJ7eENTAC4iqmz+o7vDcFn/lR/SKug1xGS9+165nK+nGVg6wohRq4DWpZHXH31mUk20ApkUztTZPLbFJj8uR8LpWiU5p0xDxhqt8K5Y9pAiuzG0bU2FDHKGSnQpW0gfnnQ73/mCORcXkvR3qY4q6vqNXs1Z59TdUo0wMMBHiW7VT1wV5mm27mTrNKR8+UDKVBJA71paL55F11C14hHpDWCeHS7D6KEPSj9oQLzLoEapwuEpoOxsG2L8VsSrsdOGdpSYhUOBCShYVVSGZocsEroqQ8IEXZzOuZqv83LBzrulyBnSbncp+J7cBUSY507dYlmVQGwT4OnTLBdqryjcoWiUM8HbEOfJUw3DLKPqwuoI6cG5YO1JS4j04iw5g/qocBGSTRaXbVaCHlqQetBLTSr8vdtOTlaBGKURQ3GsBdjHr+oEKSJjMZJnM3yOaX2msMg8X0qwf4XmP8zo+gGW2j79tSEDp44QSxsWmrjc/14Lc0c6sV4xL+f56evTSpC5ayw040eLnQXqvvtQ5gzq4O26wlFUSK5tgE4fedZ8IraqceWDQv3X9JUvPAtgl+tHf9QgHWJTYLixRZsRqj2q3R1NQqYPwB0dT4nTlfyfKjUwJBao=
-  app: movie-screening
-  on:
-    repo: backburnerstudios/viewing_party
-    branch: main
-  skip_cleanup: 'true'
+  app:
   run: rails db:migrate
