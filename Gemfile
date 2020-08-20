@@ -15,19 +15,17 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'bootsnap'
 gem 'jbuilder', '~> 2.5'
-gem 'omniauth-google-oauth2'
 
 group :development, :test do
   gem 'pry'
   gem 'travis'
-  gem 'figaro'
 end
 
 group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'rubocop-rails'
-  gem 'brakeman'
+  gem 'travis'
 end
 
 group :test do
@@ -35,10 +33,6 @@ group :test do
   gem 'capybara'
   gem 'launchy'
   gem 'simplecov'
-  gem 'factory_bot_rails'
-  gem 'simplecov'
-  gem 'faker'
-  gem 'shoulda-matchers'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
