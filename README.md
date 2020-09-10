@@ -1,7 +1,6 @@
 # Viewing Party
 
-This is the base repo for the viewing party project used for Turing's Backend Module 3.
-
+This is the base repo for the [viewing party project](https://backend.turing.io/module3/projects/viewing_party) used for Turing's Backend Module 3.
 
 ### About this Project
 
@@ -19,3 +18,5 @@ Viewing party is an application in which users can explore movie options and cre
 - Ruby 2.5.3
 
 - Rails 5.2.4.3
+
+Example wireframes to follow are found [here](https://backend.turing.io/module3/projects/viewing_party/wireframes)
