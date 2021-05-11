@@ -7,6 +7,10 @@ end
 
 ruby '2.5.3'
 
+#added gems by rstemmle
+#Use Active Model has_secure_password
+gem 'bcrypt', '~> 3.1.13'
+
 gem 'rails', '5.2.5'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.7'
