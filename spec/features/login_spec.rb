@@ -8,14 +8,14 @@ RSpec.describe "Logging in" do
 
     click_link("I already have an account")
 
-    expect(current_path).to eq(login_path)
+    expect(current_path).to eq(new_session_path)
 
     fill_in :email, with: "john@appleseed.com"
     fill_in :password, with: "12345"
 
     click_button("Log In")
 
-    expect(current_path).to eq(root_path)
+    expect(current_path).to eq(dashboard_path)
     expect(page).to have_content("Welcome, john@appleseed.com!")
     expect(page).to_not have_link("I already have an account")
     expect(page).to_not have_link("Sign up to be a user")
@@ -36,14 +36,14 @@ RSpec.describe "Logging in" do
 
     click_link("I already have an account")
 
-    expect(current_path).to eq(login_path)
+    expect(current_path).to eq(new_session_path)
 
     fill_in :email, with: "john@appleseed.com"
     fill_in :password, with: "123456"
 
     click_button("Log In")
 
-    expect(current_path).to eq(login_path)
+    expect(current_path).to eq(root_path)
     expect(page).to have_content("Your email or password are incorrect")
   end
 end
