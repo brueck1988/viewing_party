@@ -23,7 +23,7 @@ RSpec.describe "Welcome page" do
 
       click_button("Log In")
 
-      expect(current_path).to eq(dashboard_path(user.id))
+      expect(current_path).to eq(user_dashboard_index_path(user.id))
       expect(page).to have_content("Welcome, john@appleseed.com!")
       expect(page).to_not have_link("I already have an account")
       expect(page).to_not have_link("Sign up to be a user")
