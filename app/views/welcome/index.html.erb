@@ -1,6 +1,9 @@
 <h1>Welcome to Viewing Party</h1>
 <p>Brief Description of the Application</p>
 <section>
+  <% if flash[:error] %>
+    <p><%= flash[:error] %></p>
+  <% end %>
   <%= form_tag(sessions_path) do %>
     <%= label_tag :email, "Email" %>
     <%= text_field_tag :email, params[:email] %>
