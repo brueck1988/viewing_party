@@ -1,2 +1,19 @@
-<h1>View Party</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<h1>Welcome to Viewing Party</h1>
+<p>Brief Description of the Application</p>
+<section>
+  <% if flash[:error] %>
+    <p><%= flash[:error] %></p>
+  <% end %>
+  <%= form_tag(sessions_path) do %>
+    <%= label_tag :email, "Email" %>
+    <%= text_field_tag :email, params[:email] %>
+
+    <%= label_tag :password, "Password" %>
+    <%= password_field_tag :password, params[:password] %>
+
+    <%= submit_tag "Log In" %>
+  <% end %>
+
+</section>
+
+<%= link_to "New to Viewing Party? Register Here", new_user_path %>
