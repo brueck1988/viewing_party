@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   resources :users do
     resources :dashboard, only: :index
   end
-  
+
+  resources :discover, only: :index 
+
   resources :sessions, only: [:new, :create, :destroy]
 
 end
