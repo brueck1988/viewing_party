@@ -1,2 +1,20 @@
 <h1><%= flash[:info] %></h1>
+<div class="discover">
+  <%= button_to "Discover Movies", discover_index_path, method: :get %>
+</div>
+
+<section>
+  <h2>Friends</h2>
+  <div class="friends-search">
+    <%= form_with url: users_path, method: :get do |form| %>
+      <%= form.label :friends_email, "Friend's Email:" %>
+      <%= form.text_field :friends_email %>
+      <%= form.submit "Add Friend" %>
+    <% end %>
+  </div>
+</section>
+
+<section>
+  <h2>Viewing Parties</h2>
+</section>
 <h3><%= link_to "Log Out", session_path(@user), method: :delete %></h3>
