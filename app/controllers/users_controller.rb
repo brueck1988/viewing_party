@@ -1,4 +1,14 @@
 class UsersController < ApplicationController
+  def index
+    #look up find_or_create_by rails method
+    @user = User.find_by(id: session[:user_id])
+    @friend = User.find_by(email: params["friends_email"])
+    binding.pry
+    @user.friends << @new_friend
+    # @user.requested_ids << @potential_friend
+    #AR find all friendships with user_id
+  end
+
   def new
     @user = User.new
   end

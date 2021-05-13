@@ -2,19 +2,20 @@ require 'rails_helper'
 
 RSpec.describe "User dashboard" do
   before :each do
-    @user = User.create!(email: "timmay@tom.com", password: "Timmay")
+    @user1 = User.create!(email: "timmay@tom.com", password: "Timmay")
+    @user2 = User.create(email: "george@appleseed.com", password: "21345" )
     visit root_path
 
-    fill_in :email, with: @user.email
-    fill_in :password, with: @user.password
+    fill_in :email, with: @user1.email
+    fill_in :password, with: @user1.password
 
     click_button("Log In")
   end
 
-  describe "as an authenticated user when I visit '/dashboard'" do
+  describe "as an authenticated user1 when I visit '/dashboard'" do
     it "I should see" do
 
-      expect(page).to have_content("Welcome, #{@user.email}!")
+      expect(page).to have_content("Welcome, #{@user1.email}!")
       expect(page).to have_button("Discover Movies")
       expect(page).to have_content("Friends")
       expect(page).to have_field(:friends_email)
@@ -27,9 +28,19 @@ RSpec.describe "User dashboard" do
         click_button "Discover Movies"
 
         expect(current_path).to eq(discover_index_path)
-        expect(page).to have_content("Welcome, #{@user.email}!")
+        expect(page).to have_content("Welcome, #{@user1.email}!")
       end
+    end
 
+    context "When I search for a friends email" do
+      it "I add friend by email successfully" do
+        within ".friends" do
+          expect(page).to_not have_content(@user2.email)
+          fill_in :friends_email, with: @user2.email
+          click_on "Add Friend"
+          expect(page).to have_content(@user2.email)
+        end
+      end
     end
   end
 end
