@@ -1,11 +1,18 @@
 class UsersController < ApplicationController
+  skip_before_action :authorize, only: [:new, :create]
+
   def index
     #look up find_or_create_by rails method
     @user = User.find_by(id: session[:user_id])
-    @friend = User.find_by(email: params["friends_email"])
-    binding.pry
-    @user.friends << @new_friend
-    # @user.requested_ids << @potential_friend
+
+    if @friend = User.find_by(email: params["friends_email"])
+      @user.friends << @friend
+      flash[:info] = "Friend added!"
+      render "dashboard/index"
+      # redirect_to user_dashboard_index_path(@user.id)
+    end
+
+
     #AR find all friendships with user_id
   end
 
@@ -28,6 +35,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :password)
+    params.require(:user).permit(:name, :email, :password)
   end
 end

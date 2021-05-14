@@ -8,12 +8,11 @@
 Friendship.destroy_all
 User.destroy_all
 
-user1 = User.create(email: "john@appleseed.com", password: "12345" )
-user2 = User.create(email: "george@appleseed.com", password: "21345" )
-user3 = User.create(email: "jacob@appleseed.com", password: "31245" )
-user4 = User.create(email: "jill@appleseed.com", password: "41235" )
-user5 = User.create(email: "jamison@appleseed.com", password: "letters" )
-user6 = User.create(email: "jose@appleseed.com", password: "steller" )
+user1 = User.create(name: "john", email: "john@appleseed.com", password: "12345" )
+user2 = User.create(name: "george", email: "george@appleseed.com", password: "21345" )
+user3 = User.create(name: "jacob", email: "jacob@appleseed.com", password: "31245" )
+user4 = User.create(name: "jill", email: "jill@appleseed.com", password: "41235" )
+user5 = User.create(name: "jamison", email: "jamison@appleseed.com", password: "letters" )
+user6 = User.create(name: "jose", email: "jose@appleseed.com", password: "steller" )
 
-Friendship.create(accepted: user1, requested: user2)
-Friendship.create(accepted: user5, requested: user6)
+friendship = user1.friends << user2

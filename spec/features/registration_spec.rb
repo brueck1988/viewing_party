@@ -9,6 +9,7 @@ RSpec.describe "Registration Page" do
 
       expect(current_path).to eq(new_user_path)
 
+      fill_in "user[name]", with: "bob"
       fill_in "user[email]", with: "bob@bob.com"
       fill_in "user[password]", with: "pw"
       fill_in "user[password_confirmation]", with: "pw"

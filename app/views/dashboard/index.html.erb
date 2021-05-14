@@ -5,6 +5,16 @@
 
 <section class="friends">
   <h2>Friends</h2>
+  <ul>
+    <% unless @user.friends.empty? %>
+        <% @user.friends.each do |f| %>
+          <li><%= f.name %></li>
+        <% end %>
+    <% else %>
+  </ul>
+    <p>You have no friends currently</p>
+  <% end %>
+
   <div class="friends-search">
     <%= form_with url: users_path, method: :get do |form| %>
       <%= form.label :friends_email, "Friend's Email:" %>
