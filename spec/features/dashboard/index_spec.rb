@@ -33,12 +33,27 @@ RSpec.describe "User dashboard" do
     end
 
     context "When I search for a friends email" do
-      it "I add friend by email successfully" do
+      it "HAPPY PATH - I add friend by email successfully" do
         within ".friends" do
           expect(page).to_not have_content(@user2.name)
           fill_in :friends_email, with: @user2.email
           click_on "Add Friend"
           expect(page).to have_content(@user2.name)
+        end
+      end
+      
+      it "I see that I have no friends" do
+        within ".friends" do
+          expect(page).to have_content("You currently have no friends.")
+        end
+      end
+      
+      it "SAD PATH - I add friend by email unsuccessfully" do
+        within ".friends" do
+          expect(page).to have_content("You currently have no friends.")
+          fill_in :friends_email, with: "daffy_duck@gmail.com"
+          click_on "Add Friend"
+          expect(page).to have_content("daffy_duck@gmail.com doesn't exist")
         end
       end
     end
