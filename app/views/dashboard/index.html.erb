@@ -3,10 +3,21 @@
   <%= button_to "Discover Movies", discover_index_path, method: :get %>
 </div>
 
-<section>
+<section class="friends">
   <h2>Friends</h2>
-  <div class="friends-search">
-    <%= form_with url: users_path, method: :get do |form| %>
+  <ul class="friends-list">
+
+      <% unless @friends.empty? %>
+          <% @friends.each do |f| %>
+            <li><%= f.name %></li>
+          <% end %>
+      <% else %>
+  </ul>
+    <p>You have no friends currently</p>
+  <% end %>
+
+  <div class="friends-add">
+    <%= form_with url: friendships_create_path, method: :post do |form| %>
       <%= form.label :friends_email, "Friend's Email:" %>
       <%= form.text_field :friends_email %>
       <%= form.submit "Add Friend" %>
