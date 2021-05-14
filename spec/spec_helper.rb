@@ -13,7 +13,6 @@
 # it.
 #
 require 'simplecov'
-require 'support/spec_test_helper.rb'
 SimpleCov.start 'rails'
 SimpleCov.add_filter ['spec', 'config']
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
@@ -97,7 +96,4 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
-end
-RSpec.configure do |config|
-  config.include SpecTestHelper, :type => :controller
 end

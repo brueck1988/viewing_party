@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe "User dashboard" do
   before :each do
-    @user1 = User.create!(email: "timmay@tom.com", password: "Timmay")
-    @user2 = User.create(email: "george@appleseed.com", password: "21345" )
+    @user1 = User.create!(name: "timmay", email: "timmay@tom.com", password: "Timmay")
+    @user2 = User.create(name: "george", email: "george@appleseed.com", password: "21345" )
     visit root_path
 
     fill_in :email, with: @user1.email
@@ -35,10 +35,10 @@ RSpec.describe "User dashboard" do
     context "When I search for a friends email" do
       it "I add friend by email successfully" do
         within ".friends" do
-          expect(page).to_not have_content(@user2.email)
+          expect(page).to_not have_content(@user2.name)
           fill_in :friends_email, with: @user2.email
           click_on "Add Friend"
-          expect(page).to have_content(@user2.email)
+          expect(page).to have_content(@user2.name)
         end
       end
     end

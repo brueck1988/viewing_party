@@ -5,18 +5,19 @@
 
 <section class="friends">
   <h2>Friends</h2>
-  <ul>
-    <% unless @user.friends.empty? %>
-        <% @user.friends.each do |f| %>
-          <li><%= f.name %></li>
-        <% end %>
-    <% else %>
+  <ul class="friends-list">
+
+      <% unless @friends.empty? %>
+          <% @friends.each do |f| %>
+            <li><%= f.name %></li>
+          <% end %>
+      <% else %>
   </ul>
     <p>You have no friends currently</p>
   <% end %>
 
-  <div class="friends-search">
-    <%= form_with url: users_path, method: :get do |form| %>
+  <div class="friends-add">
+    <%= form_with url: friendships_create_path, method: :post do |form| %>
       <%= form.label :friends_email, "Friend's Email:" %>
       <%= form.text_field :friends_email %>
       <%= form.submit "Add Friend" %>
