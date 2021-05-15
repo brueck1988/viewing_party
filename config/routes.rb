@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :discover, only: :index
+  resources :movies, only: :index
   
   resources :sessions, only: [:new, :create, :destroy]
 
