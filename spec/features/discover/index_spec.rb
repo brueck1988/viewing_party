@@ -17,5 +17,9 @@ RSpec.describe "Discover Page" do
     it "I should see button 'Find Top Rated Movies'" do
       click_button("Find Top Rated Movies")
     end
+    # 
+    # it "I should see button 'Find Top Rated Movies'" do
+    #   click_button("Find Top Rated Movies")
+    # end
   end
 end

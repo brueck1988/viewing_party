@@ -14,7 +14,7 @@ RSpec.describe "Welcome page" do
 
   describe "logging in" do
     it "As a registered user I can login with correct credentials" do
-      user = User.create(name: "john", email: "john@appleseed.com", password: "12345" )
+      user = User.create!(name: "john", email: "john@appleseed.com", password: "12345" )
 
       visit root_path
 
@@ -22,7 +22,6 @@ RSpec.describe "Welcome page" do
       fill_in :password, with: "12345"
 
       click_button("Log In")
-
       expect(current_path).to eq(user_dashboard_index_path(user.id))
       expect(page).to have_content("Welcome, john@appleseed.com!")
       expect(page).to_not have_link("I already have an account")
