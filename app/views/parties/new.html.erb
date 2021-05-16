@@ -1,0 +1,22 @@
+<h1>Welcome <%= @host.email %>!</h1>
+
+<%= form_with model: @party, method: :create do |f| %>
+  <%= @party.movie_title %><br>
+
+  <%= f.label :length, "Duration of Party" %>
+  <%= f.number_field :length %><br>
+
+  <%= f.label :date, "Day" %>
+  <%= f.date_field :date %><br>
+
+  <%= f.label :time, "Start Time" %>
+  <%= f.time_field :time %>
+
+  <ul>
+    <% @host.friends.each do |friend| %>
+    <li><%= friend.name %></li>
+    <% end %>
+  </ul>
+
+  <%= f.submit %>
+<% end %>

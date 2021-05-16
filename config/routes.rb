@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'parties/new'
+  post 'parties/create', to: 'parties#create', as: 'parties'
   post 'friendships/create'
 
   get 'welcome/index'
