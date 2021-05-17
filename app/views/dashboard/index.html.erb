@@ -31,10 +31,16 @@
     <h3>Hosting</h3>
     <% @user.hosted.each do |party| %>
     <article class="party-<%= party.id %>">
-      <%= party.movie_title %><br>
+      <%= link_to party.movie_title %><br>
       <%= party.date.to_formatted_s(:long) %><br>
       <%= party.time.to_formatted_s(:time) %><br>
       <span>Hosting!</span>
+      <p>
+        Friends Invited:
+        <% party.users.each do |friend| %>
+          <%= friend.name %>
+        <% end %>
+      </p>
     </article>
     <% end %>
   </div>
@@ -43,10 +49,23 @@
     <h3>Invited</h3>
     <% @user.parties.each do |party| %>
     <article class="">
-      <%= party.movie_title %><br>
+      <%= link_to party.movie_title %><br>
       <%= party.date.to_formatted_s(:long) %><br>
       <%= party.time.to_formatted_s(:time) %><br>
       <span>Invited!</span>
+      <p>
+        Who is Hosting?: <%= party.host.name %>
+      </p>
+      <p>
+        Friends Invited:
+        <% party.users.each do |friend| %>
+          <% if friend.id == @user.id %>
+            <strong><%= friend.name %></strong>
+          <% else %>
+            <%= friend.name %>
+          <% end %>
+        <% end %>
+      </p>
     </article>
     <% end %>
   </div>
