@@ -1,0 +1,35 @@
+
+<h1>Welcome <%= @host.email %>!</h1>
+
+<p>
+  <% if %>
+    <strong><%= flash[:error] %><br></strong>
+  <% end %>
+</p>
+
+<%= form_with model: @party, method: :create, local: true do |f| %>
+
+  <%= f.label :movie_title, @party.movie_title %><br>
+  <%= f.hidden_field :movie_title %><br>
+
+  <%= f.label :length, "Duration of Party" %>
+  <%= f.number_field :length %><br>
+
+  <%= f.label :date, "Day" %>
+  <%= f.date_field :date %><br>
+
+  <%= f.label :time, "Start Time" %>
+  <%= f.time_field :time %><br>
+
+  <%= f.label "Friends" %>
+  <ul>
+  <%= f.collection_check_boxes :user_ids, @host.friends, :id, :name, include_hidden: false do |b| %>
+      <li id="friend-<%= b.object.id %>">
+        <%= b.check_box %>
+        <%= b.label %>
+      </li>
+      <% end %>
+  </ul>
+
+  <%= f.submit %>
+<% end %>

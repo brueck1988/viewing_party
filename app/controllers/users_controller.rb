@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  skip_before_action :authorize, only: [:new, :create]
+
   def new
     @user = User.new
   end
@@ -7,8 +9,8 @@ class UsersController < ApplicationController
     new_user = User.create(user_params)
     if new_user.save
       session[:user_id] = new_user.id
-      flash[:info] = "Welcome, #{new_user.email}!"
-      redirect_to dashboard_path(new_user.id)
+      session[:welcome] = "Welcome, #{new_user.email}!"
+      redirect_to user_dashboard_index_path(new_user.id)
     else
       flash[:error] = new_user.errors
       redirect_to new_user_path
@@ -18,6 +20,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :password)
+    params.require(:user).permit(:name, :email, :password)
   end
 end
