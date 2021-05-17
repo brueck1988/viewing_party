@@ -14,7 +14,7 @@ RSpec.describe "Welcome page" do
 
   describe "logging in" do
     it "As a registered user I can login with correct credentials" do
-      user = User.create(name: "john", email: "john@appleseed.com", password: "12345" )
+      user = User.create!(name: "john", email: "john@appleseed.com", password: "12345" )
 
       visit root_path
 

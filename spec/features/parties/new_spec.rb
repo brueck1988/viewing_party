@@ -4,6 +4,10 @@ RSpec.describe "New viewing party page" do
   #before test establish movie and host and hosts friends
   before :each do
     @host = User.create(name: "ryan", email: "ryan@ryan.com", password: "ryan")
+    @friend_1 = User.create(name: "fr_1", email: "ab@foodnetwork.com", password: "ab")
+    @friend_2 = User.create(name: "fr_2", email: "f2@foodnetwork.com", password: "ab")
+    @friend_3 = User.create(name: "fr_3", email: "f3@foodnetwork.com", password: "ab")
+    @host.friends << [@friend_1, @friend_3]
     @party = Party.new(movie_title: "Dark Phoenix", host: @host)
 
     visit parties_new_path
@@ -16,13 +20,18 @@ RSpec.describe "New viewing party page" do
 
     expect(page).to have_content("Welcome #{@party.host.email}!")
     expect(page).to have_content(@party.movie_title)
-    
-    fill_in "Duration of Party", with: 180
-    fill_in "Day", with: "2021-12-21"
-    fill_in "Start Time", with: "1:00"
 
-    check_box "jill"
+    fill_in "party[length]", with: 180
+    fill_in "party[date]", with: "06/11/2021"
+    fill_in "party[time]", with: "1:00"
 
+    within "#friend-#{@friend_1.id}" do
+      check "party[user_ids][]"
+    end
+    within "#friend-#{@friend_3.id}" do
+      check "party[user_ids][]"
+    end
+# save_and_open_page
     click_on "Create Party"
   end
 end
