@@ -1,4 +1,5 @@
-<h1><%= flash[:info] %></h1>
+<h1><%= session[:welcome] %></h1>
+
 <div class="discover">
   <%= button_to "Discover Movies", discover_index_path, method: :get %>
 </div>
@@ -30,5 +31,51 @@
 
 <section>
   <h2>Viewing Parties</h2>
+  <div class="hosting">
+    <h3>Hosting</h3>
+    <% @user.hosted.each do |party| %>
+    <article class="party-<%= party.id %>">
+      <%= link_to party.movie_title %><br>
+      <%= party.date.to_formatted_s(:long) %><br>
+      <%= party.time.to_formatted_s(:time) %><br>
+      <span>Hosting!</span>
+      <p>
+        Friends you have invited:
+        <ul>
+        <% party.users.each do |friend| %>
+            <li><%= friend.name %></li>
+        <% end %>
+        </ul>
+      </p>
+    </article>
+    <% end %>
+  </div>
+
+  <div class="invited">
+    <h3>Invited</h3>
+    <% @user.parties.each do |party| %>
+    <article class="">
+      <%= link_to party.movie_title %><br>
+      <%= party.date.to_formatted_s(:long) %><br>
+      <%= party.time.to_formatted_s(:time) %><br>
+      <span>Invited!</span>
+      <p>
+        Who is Hosting?: <%= party.host.name %>
+      </p>
+      <p>
+        Friends Invited:
+        <% party.users.each do |friend| %>
+          <% if friend.id == @user.id %>
+            <strong><%= friend.name %></strong>
+          <% else %>
+            <%= friend.name %>
+          <% end %>
+        <% end %>
+      </p>
+    </article>
+    <% end %>
+  </div>
 </section>
+
+
 <h3><%= link_to "Log Out", session_path(@user), method: :delete %></h3>

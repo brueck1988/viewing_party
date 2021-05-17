@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     new_user = User.create(user_params)
     if new_user.save
       session[:user_id] = new_user.id
-      flash[:info] = "Welcome, #{new_user.email}!"
+      session[:welcome] = "Welcome, #{new_user.email}!"
       redirect_to user_dashboard_index_path(new_user.id)
     else
       flash[:error] = new_user.errors

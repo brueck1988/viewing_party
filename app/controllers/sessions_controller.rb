@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      flash[:info] = "Welcome, #{user.email}!"
+      session[:welcome] = "Welcome, #{user.email}!"
       redirect_to user_dashboard_index_path(user.id)
     else
       flash[:error] = 'Your email or password are incorrect'

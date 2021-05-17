@@ -1,4 +1,4 @@
-<h1><%= flash[:info] %></h1>
+<h1><%= session[:welcome] %></h1>
 
 <div class="find_movies">
   <%= button_to "Find Top Rated Movies", movies_path, method: :get %>
@@ -15,3 +15,4 @@
     </li>
 <% end %>
 </ul>
+
