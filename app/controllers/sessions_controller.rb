@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       session[:welcome] = "Welcome, #{user.email}!"
       redirect_to user_dashboard_index_path(user.id)
     else
-      flash[:error] = "Your email or password are incorrect"
+      flash[:error] = 'Your email or password are incorrect'
       redirect_to root_path
     end
   end

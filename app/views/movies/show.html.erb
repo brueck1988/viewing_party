@@ -1,0 +1,21 @@
+<h1><%= flash[:info] %></h1>
+<h2><%= @movie_info[:title] %></h2>
+<section>
+  <span>Vote Average:</span>
+  <span>Runtime:</span>
+  <span>Genre:</span>
+</section>
+
+<section>
+  <h3>Summary</h3>
+  <p><%= @movie_info[:overview] %></p>
+  <h3>Cast</h3>
+</section>
+
+<section>
+  <h3><%= @movie_reviews.count %> Reviews</h3>
+  <% @movie_reviews.each do |m| %>
+    <h4><%= m[:author] %></h4>
+    <p><%= m[:content] %></p>
+  <% end %>
+</section>

@@ -14,11 +14,14 @@
           <% end %>
       <% else %>
   </ul>
-    <p>You have no friends currently</p>
+    <p>You currently have no friends. </p>
   <% end %>
-
+  <br>
   <div class="friends-add">
-    <%= form_with url: friendships_create_path, method: :post, local: true do |form| %>
+    <% if flash[:error] %>
+      <h3><%= flash[:error] %></h3>
+    <% end %>
+    <%= form_with url: friendships_create_path, method: :post do |form| %>
       <%= form.label :friends_email, "Friend's Email:" %>
       <%= form.text_field :friends_email %>
       <%= form.submit "Add Friend" %>

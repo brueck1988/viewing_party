@@ -1,14 +1,13 @@
 class FriendshipsController < ApplicationController
-
   def create
     @user = User.find_by(id: session[:user_id])
 
-    if @friend = User.find_by(email: params["friends_email"])
+    if (@friend = User.find_by(email: params['friends_email']))
       @user.friends << @friend
       redirect_to user_dashboard_index_path(@user.id)
       # render "dashboard/index"
     else
-      session[:error] = "Email doesn't exist"
+      flash[:error] = "#{params['friends_email']} doesn't exist"
       redirect_to user_dashboard_index_path(@user.id)
     end
   end
