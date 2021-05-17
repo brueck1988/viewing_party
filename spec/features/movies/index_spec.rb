@@ -13,15 +13,12 @@ RSpec.describe "Discover Page" do
     click_button "Discover Movies"
   end
 
-  describe "when I visit '/discover" do
+  describe "when I visit '/movies" do
     it "I should see button 'Find Top Rated Movies" do
       click_button("Find Top Rated Movies")
       expect(current_path).to eq(movies_path)
+      list = find("#movies").all("li")
+      expect(list.size).to eq(40)
     end
-    it "I should see search field for movies" do
-
-      expect(page).to have_field('Search By Title')
-    end
-    
   end
 end

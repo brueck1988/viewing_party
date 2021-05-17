@@ -1,18 +1,17 @@
 <h1><%= session[:welcome] %></h1>
 
-<div class="find_movies">
+<div class="find-movies">
   <%= button_to "Find Top Rated Movies", movies_path, method: :get %>
+</div>
+<br>
+<div class="search">
+  <%= form_with url: movies_path, method: :get do |f| %> 
+    <%= f.text_field :search, placeholder: "Search By Title" %>
+    
+    <%= f.submit "Search By Title" %>
+  <% end %>
 </div>
 
 
-<ul>
-<% if @movies_info %>
-  <% @movies_info.each do |m| %>
-    <li>
-      <%= link_to m[:title], movie_path(m[:id]) %>
-      <%= m[:vote_average] %>
-      <% end %>
-    </li>
-<% end %>
-</ul>
+
 

@@ -1,0 +1,12 @@
+<h1><%= session[:welcome] %></h1>
+
+<ul id="movies">
+<% if @movies_info %>
+  <% @movies_info.each do |m| %>
+    <li>
+      <%= link_to m[:title], movie_path(m[:id]) %>
+      <%= m[:vote_average] %>
+      <% end %>
+    </li>
+<% end %>
+</ul>
