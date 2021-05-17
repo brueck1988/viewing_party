@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "User dashboard" do
   before :each do
     @user1 = User.create!(name: "timmay", email: "timmay@tom.com", password: "Timmay")
-    @user2 = User.create(name: "george", email: "george@appleseed.com", password: "21345" )
+    @user2 = User.create!(name: "george", email: "george@appleseed.com", password: "21345" )
     visit root_path
 
     fill_in :email, with: @user1.email

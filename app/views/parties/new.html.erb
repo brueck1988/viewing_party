@@ -1,4 +1,11 @@
+
 <h1>Welcome <%= @host.email %>!</h1>
+
+<p>
+  <% if %>
+    <strong><%= flash[:error] %><br></strong>
+  <% end %>
+</p>
 
 <%= form_with model: @party, method: :create, local: true do |f| %>
 
@@ -16,14 +23,12 @@
 
   <%= f.label "Friends" %>
   <ul>
-  <%= f.collection_check_boxes :user_ids, @host.friends, :id, :name do |b| %>
-
+  <%= f.collection_check_boxes :user_ids, @host.friends, :id, :name, include_hidden: false do |b| %>
       <li id="friend-<%= b.object.id %>">
         <%= b.check_box %>
         <%= b.label %>
       </li>
-
-  <% end %>
+      <% end %>
   </ul>
 
   <%= f.submit %>

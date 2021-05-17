@@ -15,6 +15,21 @@ RSpec.describe "New viewing party page" do
     fill_in :password, with: @host.password
     click_button("Log In")
   end
+
+  it "SAD PATH: I get error messages when I don't fill out all fields" do
+    visit parties_new_path
+
+    expect(page).to have_content("Welcome #{@party.host.email}!")
+    expect(page).to have_content(@party.movie_title)
+
+    fill_in "party[length]", with: ""
+    fill_in "party[date]", with: "06/11/2021"
+    fill_in "party[time]", with: "1:00"
+
+    click_on "Create Party"
+    # save_and_open_page
+  end
+
   it "HAPPY PATH: I can create a new party!" do
     visit parties_new_path
 
@@ -31,8 +46,9 @@ RSpec.describe "New viewing party page" do
     within "#friend-#{@friend_3.id}" do
       check "party[user_ids][]"
     end
-# save_and_open_page
+
     click_on "Create Party"
+    # save_and_open_page
 
     expect(current_path).to eq(user_dashboard_index_path(@host.id))
 
@@ -41,6 +57,8 @@ RSpec.describe "New viewing party page" do
       expect(page).to have_content("November 06, 2021")
       expect(page).to have_content("01:00")
       expect(page).to have_content("Hosting!")
+      expect(page).to have_content("fr_1")
+      expect(page).to have_content("fr_3")
     end
 
     visit user_dashboard_index_path(@friend_1.id)
@@ -50,6 +68,7 @@ RSpec.describe "New viewing party page" do
       expect(page).to have_content("November 06, 2021")
       expect(page).to have_content("01:00")
       expect(page).to have_content("Invited!")
+      # save_and_open_page
     end
   end
 end

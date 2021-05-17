@@ -9,11 +9,12 @@ class PartiesController < ApplicationController
     party = Party.new(party_params)
     party.host = host
     if party.save
-      attendee_ids = params[:party][:user_ids].reject { |id| id == "" }
-      attendee_ids.each { |i| party.users << User.find_by(id: i) }
+      attendee_ids = params[:party][:user_ids]
+      attendee_ids.each { |i| party.users << User.find_by(id: i) } unless attendee_ids.nil?
+      session[:welcome] = "Welcome, #{host.email}!"
       redirect_to user_dashboard_index_path(host.id)
     else
-      flash[:error] = host.errors
+      flash[:error] = "Please Fill Out All Fields"
       redirect_to parties_new_path
     end
   end
