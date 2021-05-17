@@ -33,5 +33,23 @@ RSpec.describe "New viewing party page" do
     end
 # save_and_open_page
     click_on "Create Party"
+
+    expect(current_path).to eq(user_dashboard_index_path(@host.id))
+
+    within ".hosting" do
+      expect(page).to have_content("Dark Phoenix")
+      expect(page).to have_content("November 06, 2021")
+      expect(page).to have_content("01:00")
+      expect(page).to have_content("Hosting!")
+    end
+
+    visit user_dashboard_index_path(@friend_1.id)
+# save_and_open_page
+    within ".invited" do
+      expect(page).to have_content("Dark Phoenix")
+      expect(page).to have_content("November 06, 2021")
+      expect(page).to have_content("01:00")
+      expect(page).to have_content("Invited!")
+    end
   end
 end

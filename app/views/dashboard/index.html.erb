@@ -27,5 +27,30 @@
 
 <section>
   <h2>Viewing Parties</h2>
+  <div class="hosting">
+    <h3>Hosting</h3>
+    <% @user.hosted.each do |party| %>
+    <article class="party-<%= party.id %>">
+      <%= party.movie_title %><br>
+      <%= party.date.to_formatted_s(:long) %><br>
+      <%= party.time.to_formatted_s(:time) %><br>
+      <span>Hosting!</span>
+    </article>
+    <% end %>
+  </div>
+
+  <div class="invited">
+    <h3>Invited</h3>
+    <% @user.parties.each do |party| %>
+    <article class="">
+      <%= party.movie_title %><br>
+      <%= party.date.to_formatted_s(:long) %><br>
+      <%= party.time.to_formatted_s(:time) %><br>
+      <span>Invited!</span>
+    </article>
+    <% end %>
+  </div>
 </section>
+
+
 <h3><%= link_to "Log Out", session_path(@user), method: :delete %></h3>
