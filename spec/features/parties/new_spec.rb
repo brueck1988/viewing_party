@@ -20,6 +20,20 @@ RSpec.describe "New viewing party page" do
     click_button "Create Viewing Party For Movie"
   end
 
+  it "SAD PATH: I cannot submit a duration shorter than movie run time" do
+    expect(page).to have_content("Welcome #{@party.host.email}!")
+    expect(page).to have_content(@party.movie_title)
+
+    fill_in "party[length]", with: 5
+    fill_in "party[date]", with: "06/11/2021"
+    fill_in "party[time]", with: "1:00"
+
+    click_on "Create Party"
+
+    expect(current_path).to eq(parties_new_path)
+    expect(page).to have_content("Please Fill Out All Fields")
+  end
+  
   it "SAD PATH: I get error messages when I don't fill out all fields" do
     expect(page).to have_content("Welcome #{@party.host.email}!")
     expect(page).to have_content(@party.movie_title)

@@ -7,5 +7,10 @@ class Party < ApplicationRecord
             :length,
             :date,
             :time,
+            :runtime,
+            :movie_id,
             presence: true
+            
+  validates :length, numericality: { greater_than_or_equal_to: :runtime }
+  validates :runtime, numericality: true
 end
