@@ -2,7 +2,8 @@ class PartiesController < ApplicationController
   def new
     @host = User.find_by(id: session[:user_id])
     session[:welcome] = "Welcome #{@host.email}!"
-    @party = Party.new(movie_title: params[:movie_title], host: @host, movie_id: params[:movie_id])
+    @runtime = params[:runtime].to_i
+    @party = Party.new(new_party_params)
   end
 
   def create
@@ -24,5 +25,9 @@ class PartiesController < ApplicationController
 
   def party_params
     params.require(:party).permit(:movie_title, :movie_id, :length, :date, :time)
+  end
+
+  def new_party_params
+    params.permit(:movie_title, :movie_id)
   end
 end
