@@ -1,6 +1,7 @@
 class PartiesController < ApplicationController
   def new
     @host = User.find_by(id: session[:user_id])
+    require "pry";binding.pry
     @party = Party.new(movie_title: "Dark Phoenix", host: @host)
   end
 

@@ -10,10 +10,14 @@ RSpec.describe "New viewing party page" do
     @host.friends << [@friend_1, @friend_3]
     @party = Party.new(movie_title: "Dark Phoenix", host: @host)
 
-    visit parties_new_path
+    visit root_path
     fill_in :email, with: @host.email
     fill_in :password, with: @host.password
     click_button("Log In")
+    click_button "Discover Movies"
+    click_button "Find Top Rated Movies"
+    click_link "Parasite"
+    click_button "Create Viewing Party For Movie"
   end
 
   it "SAD PATH: I get error messages when I don't fill out all fields" do
@@ -27,7 +31,6 @@ RSpec.describe "New viewing party page" do
     fill_in "party[time]", with: "1:00"
 
     click_on "Create Party"
-    # save_and_open_page
   end
 
   it "HAPPY PATH: I can create a new party!" do
@@ -48,7 +51,6 @@ RSpec.describe "New viewing party page" do
     end
 
     click_on "Create Party"
-    # save_and_open_page
 
     expect(current_path).to eq(user_dashboard_index_path(@host.id))
 
