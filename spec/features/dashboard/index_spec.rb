@@ -55,6 +55,19 @@ RSpec.describe "User dashboard" do
           expect(page).to have_content("daffy_duck@gmail.com doesn't exist")
         end
       end
+      
+      it "SAD PATH - I add friend who has already been added" do
+        within ".friends" do
+          expect(page).to have_content("You currently have no friends.")
+          fill_in :friends_email, with: @user2.email
+          click_on "Add Friend"
+          expect(page).to have_content(@user2.name)
+          fill_in :friends_email, with: @user2.email
+          click_on "Add Friend"
+          expect(page).to have_content("Check Your Entry" )
+        end
+      end
     end
   end
 end
+

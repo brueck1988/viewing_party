@@ -18,9 +18,9 @@
   <% end %>
   <br>
   <div class="friends-add">
-    <% if flash[:error] %>
-      <h3><%= flash[:error] %></h3>
-    <% end %>
+      <% flash.each do |name, msg| %>
+        <h3><%= content_tag :div, msg, class: name %></h3>
+      <% end %>
     <%= form_with url: friendships_create_path, method: :post do |form| %>
       <%= form.label :friends_email, "Friend's Email:" %>
       <%= form.text_field :friends_email %>
