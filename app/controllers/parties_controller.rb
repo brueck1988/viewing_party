@@ -1,8 +1,8 @@
 class PartiesController < ApplicationController
   def new
     @host = User.find_by(id: session[:user_id])
-    require "pry";binding.pry
-    @party = Party.new(movie_title: "Dark Phoenix", host: @host)
+    session[:welcome] = "Welcome #{@host.email}!"
+    @party = Party.new(movie_title: params[:movie_title], host: @host, movie_id: params[:movie_id])
   end
 
   def create
@@ -23,6 +23,6 @@ class PartiesController < ApplicationController
   private
 
   def party_params
-    params.require(:party).permit(:movie_title, :length, :date, :time)
+    params.require(:party).permit(:movie_title, :movie_id, :length, :date, :time)
   end
 end

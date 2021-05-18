@@ -8,7 +8,7 @@ RSpec.describe "New viewing party page" do
     @friend_2 = User.create(name: "fr_2", email: "f2@foodnetwork.com", password: "ab")
     @friend_3 = User.create(name: "fr_3", email: "f3@foodnetwork.com", password: "ab")
     @host.friends << [@friend_1, @friend_3]
-    @party = Party.new(movie_title: "Dark Phoenix", host: @host)
+    @party = Party.new(movie_title: "Parasite", host: @host)
 
     visit root_path
     fill_in :email, with: @host.email
@@ -21,8 +21,6 @@ RSpec.describe "New viewing party page" do
   end
 
   it "SAD PATH: I get error messages when I don't fill out all fields" do
-    visit parties_new_path
-
     expect(page).to have_content("Welcome #{@party.host.email}!")
     expect(page).to have_content(@party.movie_title)
 
@@ -31,11 +29,12 @@ RSpec.describe "New viewing party page" do
     fill_in "party[time]", with: "1:00"
 
     click_on "Create Party"
+
+    expect(current_path).to eq(parties_new_path)
+    expect(page).to have_content("Please Fill Out All Fields")
   end
 
   it "HAPPY PATH: I can create a new party!" do
-    visit parties_new_path
-
     expect(page).to have_content("Welcome #{@party.host.email}!")
     expect(page).to have_content(@party.movie_title)
 
@@ -55,7 +54,7 @@ RSpec.describe "New viewing party page" do
     expect(current_path).to eq(user_dashboard_index_path(@host.id))
 
     within ".hosting" do
-      expect(page).to have_content("Dark Phoenix")
+      expect(page).to have_content("Parasite")
       expect(page).to have_content("November 06, 2021")
       expect(page).to have_content("01:00")
       expect(page).to have_content("Hosting!")
@@ -64,13 +63,11 @@ RSpec.describe "New viewing party page" do
     end
 
     visit user_dashboard_index_path(@friend_1.id)
-# save_and_open_page
     within ".invited" do
-      expect(page).to have_content("Dark Phoenix")
+      expect(page).to have_content("Parasite")
       expect(page).to have_content("November 06, 2021")
       expect(page).to have_content("01:00")
       expect(page).to have_content("Invited!")
-      # save_and_open_page
     end
   end
 end
