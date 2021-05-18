@@ -19,7 +19,6 @@ class MoviesController < ApplicationController
   end
   
   def search
-    require "pry";binding.pry
     conn = Faraday.new(url: 'https://api.themoviedb.org') do |faraday|
       faraday.headers["X-API-KEY"] = ENV['moviedb_api_key']
     end
@@ -37,9 +36,12 @@ class MoviesController < ApplicationController
     conn = Faraday.new(url: 'https://api.themoviedb.org') do |faraday|
       faraday.headers["X-API-KEY"] = ENV['moviedb_api_key']
     end
-    movie_response = conn.get("/3/movie/#{params[:id]}?api_key=#{ENV['moviedb_api_key']}&language=en-US&include_adult=false")
+    movie_response = conn.get("/3/movie/#{params[:id]}?api_key=#{ENV['moviedb_api_key']}&language=en-US&include_adult=false&append_to_response=credits")
     reviews_response = conn.get("/3/movie/#{params[:id]}/reviews?api_key=#{ENV['moviedb_api_key']}&language=en-US&include_adult=false")
+    
     @movie_info = JSON.parse(movie_response.body, symbolize_names: true)
+    @genres = @movie_info[:genres].map { |g| g[:name] }.join(", ")
+    @cast = @movie_info[:credits][:cast].first(10).map {|c| c[:name]}
     @movie_reviews = JSON.parse(reviews_response.body, symbolize_names: true)[:results]
   end
 end
