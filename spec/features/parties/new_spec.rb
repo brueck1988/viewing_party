@@ -3,6 +3,11 @@ require 'rails_helper'
 RSpec.describe "New viewing party page" do
   #before test establish movie and host and hosts friends
   before :each do
+    stub_top_20_page1
+    stub_top_20_page2
+    stub_movie_496243
+    stub_review_496243
+    
     @host = User.create(name: "ryan", email: "ryan@ryan.com", password: "ryan")
     @friend_1 = User.create(name: "fr_1", email: "ab@foodnetwork.com", password: "ab")
     @friend_2 = User.create(name: "fr_2", email: "f2@foodnetwork.com", password: "ab")
@@ -21,6 +26,7 @@ RSpec.describe "New viewing party page" do
   end
 
   it "SAD PATH: I cannot submit a duration shorter than movie run time" do
+
     expect(page).to have_content("Welcome #{@party.host.email}!")
     expect(page).to have_content(@party.movie_title)
 
@@ -33,7 +39,7 @@ RSpec.describe "New viewing party page" do
     expect(current_path).to eq(parties_new_path)
     expect(page).to have_content("Please Fill Out All Fields")
   end
-  
+
   it "SAD PATH: I get error messages when I don't fill out all fields" do
     expect(page).to have_content("Welcome #{@party.host.email}!")
     expect(page).to have_content(@party.movie_title)

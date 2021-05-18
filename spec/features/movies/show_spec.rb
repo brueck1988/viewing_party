@@ -2,6 +2,11 @@ require 'rails_helper'
 
 RSpec.describe "Movie Show Page" do
   before :each do
+    stub_top_20_page1
+    stub_top_20_page2
+    stub_movie_496243
+    stub_review_496243
+
     @user1 = User.create!(name: "timmay", email: "timmay@tom.com", password: "Timmay")
     visit root_path
 
@@ -13,7 +18,7 @@ RSpec.describe "Movie Show Page" do
     click_button "Find Top Rated Movies"
     click_link "Parasite"
   end
-  
+
   describe "when I visit the movie show page'" do
     it "I should see the movie's details'" do
       expect(page).to have_content("Welcome, #{@user1.email}!")
