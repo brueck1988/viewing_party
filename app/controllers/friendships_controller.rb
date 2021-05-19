@@ -6,12 +6,11 @@ class FriendshipsController < ApplicationController
       if friendship.save
         flash[:notice] = "#{@friend.name} has been added"
       else
-        flash[:error] = "Check Your Entry" 
+        flash[:error] = 'Check Your Entry'
       end
     else
       flash[:error] = "#{params['friends_email']} doesn't exist"
     end
     redirect_to user_dashboard_index_path(@user.id)
   end
-
 end

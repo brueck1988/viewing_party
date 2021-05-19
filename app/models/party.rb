@@ -1,5 +1,5 @@
 class Party < ApplicationRecord
-  belongs_to :host, class_name: "User"
+  belongs_to :host, class_name: 'User'
   has_many :attendees
   has_many :users, through: :attendees
 
@@ -10,7 +10,6 @@ class Party < ApplicationRecord
             :runtime,
             :movie_id,
             presence: true
-            
   validates :length, numericality: { greater_than_or_equal_to: :runtime }
   validates :runtime, numericality: true
 end
