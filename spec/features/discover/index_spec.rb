@@ -13,24 +13,20 @@ RSpec.describe "Discover Page" do
     click_button 'Discover Movies'
   end
 
-  describe 'when I visit discover' do
+  describe 'when I visit discover', :vcr do
     it 'I should see button Find Top Rated Movies' do    
-      VCR.use_cassette('Button to find top Rated Movies') do    
-        click_button('Find Top Rated Movies')
-        expect(current_path).to eq(movies_path)
-      end
+      click_button('Find Top Rated Movies')
+      expect(current_path).to eq(movies_path)
     end
 
-    it 'I should see search field for movies' do
-      VCR.use_cassette('Search for Specific Movie') do    
-        expect(page).to have_field('Search By Title')
-        fill_in "Search By Title", with: "Indiana Jones"
-        click_on "Search By Title"
-        expect(current_path).to eq(movies_path)
-        expect(page).to have_content("Indiana Jones")
-        click_on "Indiana Jones and the Last Crusade"
-        expect(current_path).to eq(movie_path(89))
-      end
+    it 'I should see search field for movies', :vcr do
+      expect(page).to have_field('Search By Title')
+      fill_in "Search By Title", with: "Indiana Jones"
+      click_on "Search By Title"
+      expect(current_path).to eq(movies_path)
+      expect(page).to have_content("Indiana Jones")
+      click_on "Indiana Jones and the Last Crusade"
+      expect(current_path).to eq(movie_path(89))
     end    
   end
 end

@@ -12,20 +12,18 @@ RSpec.describe "Movie Show Page" do
     click_button "Discover Movies"
   end
 
-  describe "when I visit the movie show page" do
+  describe "when I visit the movie show page", :vcr do
     it "I should see the movie's details" do
-      VCR.use_cassette("I should see the movie's details") do
-        click_button "Find Top Rated Movies"
-        click_link "Parasite"
-        expect(page).to have_content("Welcome, #{@user1.email}!")
-        expect(page).to have_content("Parasite")
-        expect(page).to have_content("Vote Average:")
-        expect(page).to have_content("Runtime:")
-        expect(page).to have_content("Genre:")
-        expect(page).to have_content("Cast")
-        expect(page).to have_content("Summary")
-        expect(page).to have_content("Reviews")
-      end
+      click_button "Find Top Rated Movies"
+      click_link "Parasite"
+      expect(page).to have_content("Welcome, #{@user1.email}!")
+      expect(page).to have_content("Parasite")
+      expect(page).to have_content("Vote Average:")
+      expect(page).to have_content("Runtime:")
+      expect(page).to have_content("Genre:")
+      expect(page).to have_content("Cast")
+      expect(page).to have_content("Summary")
+      expect(page).to have_content("Reviews")
     end
   end
 end

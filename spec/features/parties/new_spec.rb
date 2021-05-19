@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "New viewing party page" do
+RSpec.describe "New viewing party page", :vcr do
   before :each do
     @host = User.create(name: "ryan", email: "ryan@ryan.com", password: "ryan")
     @friend_1 = User.create(name: "fr_1", email: "ab@foodnetwork.com", password: "ab")
@@ -14,11 +14,9 @@ RSpec.describe "New viewing party page" do
     fill_in :password, with: @host.password
     click_button("Log In")
     click_button "Discover Movies"
-    VCR.use_cassette('New viewing party page') do    
-      click_button "Find Top Rated Movies"
-      click_link "Parasite"
-      click_button "Create Viewing Party For Movie"
-    end
+    click_button "Find Top Rated Movies"
+    click_link "Parasite"
+    click_button "Create Viewing Party For Movie"
   end
 
   it "SAD PATH: I cannot submit a duration shorter than movie run time" do

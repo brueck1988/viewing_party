@@ -15,7 +15,6 @@ RSpec.describe "User dashboard" do
 
   describe "as an authenticated user when I visit '/dashboard'" do
     it "I should see" do
-
       expect(page).to have_content("Welcome, #{@user1.email}!")
       expect(page).to have_button("Discover Movies")
       expect(page).to have_content("Friends")
@@ -71,13 +70,11 @@ RSpec.describe "User dashboard" do
     end
 
     context "When I click the link for a movie I am hosting or invited to" do
-      it "Goes to the Movies show page" do
-        VCR.use_cassette('Link to Movies Show Page_496243') do    
-          within ".hosting" do
-            expect(page).to have_content(@party.movie_title)
-            click_link "Parasite"
-            expect(current_path).to eq(movie_path(@party.movie_id))
-          end
+      it "Goes to the Movies show page", :vcr do
+        within ".hosting" do
+          expect(page).to have_content(@party.movie_title)
+          click_link "Parasite"
+          expect(current_path).to eq(movie_path(@party.movie_id))
         end
       end
     end
