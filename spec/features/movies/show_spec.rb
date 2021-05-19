@@ -10,12 +10,12 @@ RSpec.describe "Movie Show Page" do
 
     click_button("Log In")
     click_button "Discover Movies"
-    click_button "Find Top Rated Movies"
-    click_link "Parasite"
   end
-  
-  describe "when I visit the movie show page'" do
-    it "I should see the movie's details'" do
+
+  describe "when I visit the movie show page", :vcr do
+    it "I should see the movie's details" do
+      click_button "Find Top Rated Movies"
+      click_link "Parasite"
       expect(page).to have_content("Welcome, #{@user1.email}!")
       expect(page).to have_content("Parasite")
       expect(page).to have_content("Vote Average:")
