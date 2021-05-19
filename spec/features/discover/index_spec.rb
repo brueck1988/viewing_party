@@ -24,7 +24,7 @@ RSpec.describe "Discover Page" do
 
     it 'I should see search field for movies' do
       json_response_search_1 = File.read('spec/fixtures/search_page_1.json')
-      stub_request(:get, "https://api.themoviedb.org/3/search/movie?api_key=477ddf3c5e2f8973bf7c8405d75b2acb&include_adult=false&language=en-US&page=1&query=Indiana%20Jones").
+      stub_request(:get, "https://api.themoviedb.org/3/search/movie?api_key=#{ENV['moviedb_api_key']}&include_adult=false&language=en-US&page=1&query=Indiana%20Jones").
     with(
       headers: {
      'Accept'=>'*/*',
@@ -35,7 +35,7 @@ RSpec.describe "Discover Page" do
     to_return(status: 200, body: json_response_search_1, headers: {})
 
     json_response_search_2 = File.read('spec/fixtures/search_page_2.json')
-    stub_request(:get, "https://api.themoviedb.org/3/search/movie?api_key=477ddf3c5e2f8973bf7c8405d75b2acb&include_adult=false&language=en-US&page=2&query=Indiana%20Jones").
+    stub_request(:get, "https://api.themoviedb.org/3/search/movie?api_key=#{ENV['moviedb_api_key']}=Indiana%20Jones").
   with(
     headers: {
    'Accept'=>'*/*',
