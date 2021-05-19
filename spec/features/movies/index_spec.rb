@@ -24,9 +24,15 @@ RSpec.describe "Discover Page" do
       expect(list.size).to eq(40)
     end
 
-    xit 'I should see search field for movies' do
+    it 'I should see search field for movies' do
+      stub_movie_search_indiana_jones_1
+      stub_movie_search_indiana_jones_2
 
       expect(page).to have_field('Search By Title')
+      fill_in "Search By Title", with: "Indiana Jones"
+      click_on "Search By Title"
+      list = find("#movies").all("li")
+      expect(list.size).to eq(40)
     end
   end
 end
