@@ -14,6 +14,20 @@
  *= require_self
  */
 
+.gif-wrapper {
+  background-image: url(giphy.gif);
+  text-align: center;
+  line-height: 165vh;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  }
+  
+h1.landing-title {
+    color: black;
+    font-size: 60px;
+}
+
 body {
   display: flex;
   min-height: 100vh;
