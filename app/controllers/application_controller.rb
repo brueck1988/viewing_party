@@ -5,8 +5,6 @@ class ApplicationController < ActionController::Base
   private
 
   def authorize
-    unless User.find_by(id: session[:user_id])
-      redirect_to root_path, notice: 'Please Log In'
-    end
+    redirect_to root_path, notice: 'Please Log In' unless User.find_by(id: session[:user_id])
   end
 end
