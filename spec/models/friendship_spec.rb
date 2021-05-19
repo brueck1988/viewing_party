@@ -2,8 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Friendship, type: :model do
   describe "validations" do
-    # it {should validate_uniqueness_of(:friend_id).scoped_to(:user_id)}
-    # it { is_expected.to validate_uniqueness_of(:friend_id).scoped_to(:user_id)}
     it "enforces uniqueness" do
       user1 = User.create!(name: "timmay", email: "timmay@tom.com", password: "Timmay")
       user2 = User.create(name: "george", email: "george@appleseed.com", password: "21345" )

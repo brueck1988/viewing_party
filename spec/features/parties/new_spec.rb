@@ -1,13 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe "New viewing party page" do
-  #before test establish movie and host and hosts friends
   before :each do
     stub_top_20_page1
     stub_top_20_page2
     stub_movie_496243
     stub_review_496243
-    
+
     @host = User.create(name: "ryan", email: "ryan@ryan.com", password: "ryan")
     @friend_1 = User.create(name: "fr_1", email: "ab@foodnetwork.com", password: "ab")
     @friend_2 = User.create(name: "fr_2", email: "f2@foodnetwork.com", password: "ab")
