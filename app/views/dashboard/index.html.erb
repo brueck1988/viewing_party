@@ -35,7 +35,7 @@
     <h3>Hosting</h3>
     <% @user.hosted.each do |party| %>
     <article class="party-<%= party.id %>">
-      <%= link_to party.movie_title %><br>
+      <%= link_to party.movie_title, movie_path(party.movie_id) %><br>
       <%= party.date.to_formatted_s(:long) %><br>
       <%= party.time.to_formatted_s(:time) %><br>
       <span>Hosting!</span>
@@ -55,7 +55,7 @@
     <h3>Invited</h3>
     <% @user.parties.each do |party| %>
     <article class="">
-      <%= link_to party.movie_title %><br>
+      <%= link_to party.movie_title, movie_path(party.movie_id) %><br>
       <%= party.date.to_formatted_s(:long) %><br>
       <%= party.time.to_formatted_s(:time) %><br>
       <span>Invited!</span>

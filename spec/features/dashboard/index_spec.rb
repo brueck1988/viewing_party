@@ -4,6 +4,7 @@ RSpec.describe "User dashboard" do
   before :each do
     @user1 = User.create!(name: "timmay", email: "timmay@tom.com", password: "Timmay")
     @user2 = User.create!(name: "george", email: "george@appleseed.com", password: "21345" )
+    @party = Party.create!(host_id: @user1.id, movie_id: 496243, movie_title: "Parasite", runtime: 133, length: 145, date: "06/11/2021", time: "1:00")
     visit root_path
 
     fill_in :email, with: @user1.email
@@ -40,13 +41,13 @@ RSpec.describe "User dashboard" do
           expect(page).to have_content(@user2.name)
         end
       end
-      
+
       it "I see that I have no friends" do
         within ".friends" do
           expect(page).to have_content("You currently have no friends.")
         end
       end
-      
+
       it "SAD PATH - I add friend by email unsuccessfully" do
         within ".friends" do
           expect(page).to have_content("You currently have no friends.")
@@ -55,7 +56,7 @@ RSpec.describe "User dashboard" do
           expect(page).to have_content("daffy_duck@gmail.com doesn't exist")
         end
       end
-      
+
       it "SAD PATH - I add friend who has already been added" do
         within ".friends" do
           expect(page).to have_content("You currently have no friends.")
@@ -68,6 +69,18 @@ RSpec.describe "User dashboard" do
         end
       end
     end
+
+    context "When I click the link for a movie I am hosting or invited to" do
+      it "Goes to the Movies show page" do
+        stub_movie_496243
+        stub_review_496243
+
+        within ".hosting" do
+          expect(page).to have_content(@party.movie_title)
+          click_link "Parasite"
+          expect(current_path).to eq(movie_path(@party.movie_id))
+        end
+      end
+    end
   end
 end
-
