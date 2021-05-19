@@ -72,13 +72,12 @@ RSpec.describe "User dashboard" do
 
     context "When I click the link for a movie I am hosting or invited to" do
       it "Goes to the Movies show page" do
-        stub_movie_496243
-        stub_review_496243
-
-        within ".hosting" do
-          expect(page).to have_content(@party.movie_title)
-          click_link "Parasite"
-          expect(current_path).to eq(movie_path(@party.movie_id))
+        VCR.use_cassette('Link to Movies Show Page_496243') do    
+          within ".hosting" do
+            expect(page).to have_content(@party.movie_title)
+            click_link "Parasite"
+            expect(current_path).to eq(movie_path(@party.movie_id))
+          end
         end
       end
     end

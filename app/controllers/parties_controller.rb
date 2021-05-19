@@ -16,7 +16,7 @@ class PartiesController < ApplicationController
       session[:welcome] = "Welcome, #{host.email}!"
       redirect_to user_dashboard_index_path(host.id)
     else
-      flash[:error] = "Please Fill Out All Fields"
+      flash[:error] = 'Please Fill Out All Fields'
       redirect_to parties_new_path
     end
   end

@@ -6,7 +6,7 @@ RSpec.describe "Welcome page" do
       visit root_path
 
       expect(page).to have_content("Welcome to Viewing Party")
-      expect(page).to have_content("Brief Description of the Application")
+      expect(page).to have_content("Viewing party is an application in which users can explore movie options and create a viewing party event for the user and friend's.")
       expect(page).to have_button("Log In")
       expect(page).to have_link("New to Viewing Party? Register Here")
     end
