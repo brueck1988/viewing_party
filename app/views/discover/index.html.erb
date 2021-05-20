@@ -1,3 +1,4 @@
+<%= link_to "Dashboard", user_dashboard_index_path(@user.id) %>
 <h1><%= session[:welcome] %></h1>
 
 <div class="find-movies">
@@ -5,13 +6,9 @@
 </div>
 <br>
 <div class="search">
-  <%= form_with url: movies_path, method: :get do |f| %> 
+  <%= form_with url: movies_path, method: :get do |f| %>
     <%= f.text_field :search, placeholder: "Search By Title" %>
-    
+
     <%= f.submit "Search By Title" %>
   <% end %>
 </div>
-
-
-
-
