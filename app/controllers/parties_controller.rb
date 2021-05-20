@@ -20,7 +20,6 @@ class PartiesController < ApplicationController
       flash[:error] = 'Please Fill Out All Fields'
       session[:welcome] = "Welcome, #{@host.email}!"
       render 'new'
-      # redirect_to parties_new_path
     end
   end
 
