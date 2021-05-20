@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       session[:welcome] = "Welcome, #{new_user.email}!"
       redirect_to user_dashboard_index_path(new_user.id)
     else
-      flash[:error] = new_user.errors
+      flash[:error] = "Please fill out all fields"
       redirect_to new_user_path
     end
   end
