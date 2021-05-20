@@ -1,8 +1,6 @@
 class SessionsController < ApplicationController
   skip_before_action :authorize, only: %i[new create]
 
-  def new; end
-
   def create
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
