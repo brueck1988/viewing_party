@@ -8,8 +8,8 @@ class MoviesController < ApplicationController
   end
 
   def show
-    user = User.find(session[:user_id])
-    flash[:info] = "Welcome, #{user.email}!"
+    @user = User.find(session[:user_id])
+    flash[:info] = "Welcome, #{@user.email}!"
 
     @movie_info = MoviesFacade.movie(params[:id])
     @movie_reviews = MoviesFacade.reviews(params[:id])

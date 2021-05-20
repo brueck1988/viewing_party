@@ -7,17 +7,19 @@ class PartiesController < ApplicationController
   end
 
   def create
-    host = User.find_by(id: session[:user_id])
-    party = Party.new(party_params)
-    party.host = host
-    if party.save
+    @host = User.find_by(id: session[:user_id])
+    @party = Party.new(party_params)
+    @party.host = @host
+    if @party.save
       attendee_ids = params[:party][:user_ids]
-      attendee_ids.each { |i| party.users << User.find_by(id: i) } unless attendee_ids.nil?
-      session[:welcome] = "Welcome, #{host.email}!"
-      redirect_to user_dashboard_index_path(host.id)
+      attendee_ids.each { |i| @party.users << User.find_by(id: i) } unless attendee_ids.nil?
+      session[:welcome] = "Welcome, #{@host.email}!"
+      redirect_to user_dashboard_index_path(@host.id)
     else
+      @runtime = params[:party][:runtime].to_i
       flash[:error] = 'Please Fill Out All Fields'
-      redirect_to parties_new_path
+      session[:welcome] = "Welcome, #{@host.email}!"
+      render 'new'
     end
   end
 

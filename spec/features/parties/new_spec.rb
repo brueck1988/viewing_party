@@ -29,7 +29,7 @@ RSpec.describe "New viewing party page", :vcr do
 
     click_on "Create Party"
 
-    expect(current_path).to eq(parties_new_path)
+    expect(current_path).to eq("/parties/create")
     expect(page).to have_content("Please Fill Out All Fields")
   end
 
@@ -43,7 +43,7 @@ RSpec.describe "New viewing party page", :vcr do
 
     click_on "Create Party"
 
-    expect(current_path).to eq(parties_new_path)
+    expect(current_path).to eq("/parties/create")
     expect(page).to have_content("Please Fill Out All Fields")
   end
 

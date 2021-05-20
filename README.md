@@ -15,6 +15,10 @@ Viewing party is an application in which users can explore movie options and cre
 
 [Visit us online!](https://radiant-sierra-18770.herokuapp.com/)
 
+### Our Database Design
+
+'db_design.png'
+
 ### Our API endpoint
 
 [The Movie Database API](https://developers.themoviedb.org/3/getting-started)
