@@ -17,7 +17,7 @@ Viewing party is an application in which users can explore movie options and cre
 
 ### Our Database Design
 
-'db_design.png'
+![Screen Shot 2021-05-20 at 09 45 28](https://user-images.githubusercontent.com/76269882/118991948-2e4a2500-b952-11eb-8517-5ea11e00e5c3.png)
 
 ### Our API endpoint
 
