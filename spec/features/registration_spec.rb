@@ -21,5 +21,19 @@ RSpec.describe "Registration Page" do
 
       expect(page).to have_content("Welcome, bob@bob.com!")
     end
+
+    it "SAD PATH - I get error when I enter info improperly" do
+      visit root_path
+
+      click_link "New to Viewing Party? Register Here"
+
+      fill_in "user[name]", with: "bob"
+      fill_in "user[email]", with: ""
+      fill_in "user[password]", with: "pw"
+      fill_in "user[password_confirmation]", with: "pw"
+      click_button "Register"
+
+      expect(page).to have_content("Please fill out all fields")
+    end
   end
 end
