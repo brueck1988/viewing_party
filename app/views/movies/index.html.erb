@@ -7,19 +7,19 @@
 <br>
 
 <div class="search">
-  <%= form_with url: movies_path, method: :get do |f| %> 
+  <%= form_with url: movies_path, method: :get do |f| %>
     <%= f.text_field :search, placeholder: "Search By Title" %>
-    
+
     <%= f.submit "Search By Title" %>
   <% end %>
 </div>
 
 <ul id="movies">
 <% if @movies_info %>
-  <% @movies_info.each do |m| %>
+  <% @movies_info.each do |movie| %>
     <li>
-      <%= link_to m[:title], movie_path(m[:id]) %>
-      <%= m[:vote_average] %>
+      <%= link_to movie.title, movie_path(movie.id) %>
+      <%= movie.vote_average %>
       <% end %>
     </li>
 <% end %>

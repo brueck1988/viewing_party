@@ -1,22 +1,22 @@
 <h1><%= flash[:info] %></h1>
-<h2><%= @movie_info[:title] %></h2>
+<h2><%= @movie_info.title %></h2>
 <div class="button">
-  <%= button_to "Create Viewing Party For Movie", parties_new_path, params: {runtime: @movie_info[:runtime], movie_id: @movie_info[:id], movie_title: @movie_info[:title]}, method: :get  %>
+  <%= button_to "Create Viewing Party For Movie", parties_new_path, params: {runtime: @movie_info.runtime, movie_id: @movie_info.id, movie_title: @movie_info.title}, method: :get  %>
 </div>
 <section>
   <ul>
-    <li>Vote Average: <%= @movie_info[:vote_average] %></li>
-    <li>Runtime: <%= @movie_info[:runtime] %> minutes</li>
-    <li>Genre: <%= @genres %></li>
+    <li>Vote Average: <%= @movie_info.vote_average %></li>
+    <li>Runtime: <%= @movie_info.runtime %> minutes</li>
+    <li>Genre: <%= @movie_info.genres %></li>
   </ul>
 </section>
 
 <section>
   <h3>Summary</h3>
-  <p><%= @movie_info[:overview] %></p>
+  <p><%= @movie_info.overview %></p>
   <h3>Cast</h3>
   <ul>
-    <% @cast.each do |cast_member| %>
+    <% @movie_info.cast.each do |cast_member| %>
       <li><%= cast_member %></li>
     <% end %>
   </ul>
