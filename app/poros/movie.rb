@@ -1,25 +1,40 @@
 class Movie
-  attr_reader :title,
-              :id,
-              :vote_average,
-              :overview,
-              :cast,
-              :genres,
-              :runtime
+  attr_reader :json, :cast_json
 
-  def initialize(data)
-    @title = data[:title]
-    @id = data[:id]
-    @vote_average = data[:vote_average]
-    @overview = data[:overview]
-    if data[:credits].nil?
-      @cast
-      @genres
-      @runtime
-    else
-      @cast = data[:credits][:cast].first(10).map { |c| c[:name] }
-      @genres = data[:genres].map { |g| g[:name] }.join(', ')
-      @runtime = data[:runtime]
-    end
+  def initialize(json_from_api, cast= nil)
+    @json = json_from_api
+    @cast_json = cast
+  end
+
+  def title
+    json[:title]
+  end
+
+  def id
+    json[:id]
+  end
+
+  def vote_average
+    json[:vote_average]
+  end
+
+  def overview
+    json[:overview]
+  end
+
+  def cast
+    cast_json[:cast].first(10).map { |actor| actor[:name] }
+  end
+
+  def genres
+    json[:genres].map { |genre| genre[:name] }.join(', ')
+  end
+
+  def runtime
+    json[:runtime]
+  end
+
+  def reviews
+    json[:reviews][:results].map { |review| Review.new(review)}
   end
 end

@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
     if params[:search].nil? || params[:search] == ''
       @movies_info = MoviesFacade.top_forty_movies
     else
-      @movies_info = MoviesFacade.search(params[:search])
+      @movies_info = MoviesFacade.search_for_a_movie(params[:search])
     end
   end
 
@@ -11,7 +11,7 @@ class MoviesController < ApplicationController
     @user = User.find(session[:user_id])
     flash[:info] = "Welcome, #{@user.email}!"
 
-    @movie_info = MoviesFacade.movie(params[:id])
-    @movie_reviews = MoviesFacade.reviews(params[:id])
+    @movie_info = MoviesFacade.movie_by_id(params[:id])
+    # @movie_reviews = MoviesFacade.reviews(params[:id])
   end
 end

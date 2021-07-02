@@ -14,7 +14,7 @@ RSpec.describe "Discover Page" do
   end
 
   describe 'when I visit discover', :vcr do
-    it 'I should see button Find Top Rated Movies' do    
+    it 'I should see button Find Top Rated Movies' do
       click_button('Find Top Rated Movies')
       expect(current_path).to eq(movies_path)
     end
@@ -27,6 +27,6 @@ RSpec.describe "Discover Page" do
       expect(page).to have_content("Indiana Jones")
       click_on "Indiana Jones and the Last Crusade"
       expect(current_path).to eq(movie_path(89))
-    end    
+    end
   end
 end
