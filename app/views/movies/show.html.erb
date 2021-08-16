@@ -24,9 +24,9 @@
 </section>
 
 <section>
-  <h3><%= @movie_reviews.count %> Reviews</h3>
-  <% @movie_reviews.each do |m| %>
-    <h4>Author: <%= m[:author] %></h4>
-    <p><%= m[:content] %></p>
+  <h3><%= @movie_info.reviews.count %> Reviews</h3>
+  <% @movie_info.reviews.each do |review| %>
+    <h4>Author: <%= review.author %></h4>
+    <p><%= review.content %></p>
   <% end %>
 </section>
