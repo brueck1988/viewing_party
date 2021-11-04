@@ -11,9 +11,9 @@ Plan a party today!
 
 ### About this Project
 
-Viewing party is an application in which users can explore movie options and create a viewing party event for the user and friend's.
+Viewing party is an application in which users can explore movie options and create a viewing party event for the user and their friends.
 
-[Visit us online!](https://radiant-sierra-18770.herokuapp.com/)
+[Visit us online!](https://viewing-party-202105.herokuapp.com/)
 
 ### Our Database Design
 
@@ -35,8 +35,12 @@ Viewing party is an application in which users can explore movie options and cre
 
 ## Links to Related Gems
 
-[figaro](https://github.com/laserlemon/figaro)  
-[webmock](https://rubygems.org/gems/webmock)
+- [Faraday](https://github.com/lostisland/faraday)
+- [Bcrypt](https://github.com/bcrypt-ruby/bcrypt-ruby)
+- [Figaro](https://github.com/laserlemon/figaro)
+- [RSpec](https://github.com/rspec/rspec-rails)
+- [Webmock](https://github.com/bblimke/webmock)
+- [VCR](https://github.com/vcr/vcr)
 
 ## Versions
 

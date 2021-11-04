@@ -1,0 +1,30 @@
+version: 2.1
+orbs:
+  ruby: circleci/ruby@0.1.2
+
+jobs:
+  build:
+    working_directory: ~/viewing_party
+    docker:
+      - image: circleci/ruby:2.5.3-node-browsers
+        environment:
+          PGHOST: localhost
+          PGUSER: viewing_party
+          RAILS_ENV: test
+      - image: postgres:13.2
+        environment:
+          POSTGRES_USER: viewing_party
+          POSTGRES_DB: viewing_party_test
+          POSTGRES_PASSWORD:
+    steps:
+      - checkout
+      - run: gem install bundler:2.2.23
+      - run:
+          name: viewing_party
+          command: bundle -v
+      - ruby/bundle-install
+
+      - checkout
+      - run: bundle install --path vendor/bundle
+      - run: bundle exec rake db:create
+      - run: bundle exec rspec
