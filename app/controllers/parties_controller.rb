@@ -1,4 +1,6 @@
 class PartiesController < ApplicationController
+  skip_before_action :verify_authenticity_token , :only => [:create]
+  
   def new
     @host = User.find_by(id: session[:user_id])
     session[:welcome] = "Welcome #{@host.email}!"
